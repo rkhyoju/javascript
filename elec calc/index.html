@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Electricity bill calc</title>
+    <style> 
+     *{ margin:0px; padding:0px}
+    section  { margin:10px; width:52.5%; padding:2px;border-radius: 2%; border: solid 1px blue;  background-color: bisque; font-size: 1.2em}
+   
+    </style>
+
+</head>
+<body>
+   
+     <img src="images/bill.png">
+
+  <section>
+        <h4>Electricity bill calcuation</h4>
+    <table>
+        <tr>
+        <td>Enter Previous Meter reading: </td> 
+        <td><input id="oldReading" type="number" placeholder="type number only"> </td>
+        </tr>
+        <tr>
+             <td>Enter Current number:</td>
+             <td><input id="newReading"  type="number" placeholder="type number only"> </td>
+        </tr>
+        
+        <tr>
+            <td><input type="button" onclick="calc()" value="Click for Calculate" ></td>
+        </tr>
+        <tr>
+            <td>Total energy unit consumed: </td>
+            <td> <h4 id="unit">  </h4>  </td>
+        </tr>
+        <tr>
+            <td>Your total bill amount is: </td>
+            <td> <h4 id="Tcost">  </h4>  </td>
+        </tr>
+    </table>
+</section>
+    <script>
+       var oldReading; 
+       var newReading;
+       var unit;
+       var ecost;
+       var Tcost;
+       var scharge=[30,50,75,100,125,150,175];
+      
+
+       function calc() { 
+           
+           oldReading = document.getElementById ("oldReading").value;
+           newReading= document.getElementById ("newReading").value;
+           unit=newReading-oldReading;
+          
+            if(unit>0 && unit<=20) {ecost=3*unit; Tcost=ecost+scharge[0];  disp(Tcost);   }
+            else if(unit>20 && unit<=30)   {ecost=20*3 + (unit-20)*7; Tcost=ecost+scharge[1]; alert(ecost +","+ Tcost); disp(Tcost); }
+            else if(unit>30 && unit<=50)   {ecost=20*3 + 10*7 + (unit-30)*8.5; Tcost=ecost+scharge[2]; alert(ecost +","+ Tcost);disp(Tcost); }
+            else if(unit>50 && unit<=150)  {ecost=20*3 + 10*7 +  20*8.5 + (unit-50)*10; Tcost=ecost+scharge[3]; alert(ecost +","+ Tcost);disp(Tcost); }
+            else if(unit>150 && unit<=250) {ecost=20*3 + 10*7 +  20*8.5 + 100*10 + (unit-150)*11; Tcost=ecost+scharge[4];alert(ecost +","+ Tcost); disp(Tcost); }
+            else if(unit>250 && unit<=400) {ecost=20*3 + 10*7 +  20*8.5 + 100*10 + 100*11 + (unit-250)*12; Tcost=ecost+scharge[5]; alert(ecost +","+ Tcost);disp(Tcost); }
+            else if(unit>400 )             {ecost=20*3 + 10*7 +  20*8.5 + 100*10 + 100*11 + 150*12 + (unit-400)*13; Tcost=ecost+scharge[6]; alert(ecost +","+ Tcost); disp(Tcost); }
+             }
+        function disp(Tcost) {  document.getElementById("Tcost").innerHTML=Tcost;
+                                document.getElementById("unit").innerHTML=unit;}
+            
+   </script>
+</body>
+</html>
